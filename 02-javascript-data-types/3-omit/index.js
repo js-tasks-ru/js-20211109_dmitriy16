@@ -6,10 +6,10 @@
  */
 export const omit = (obj, ...fields) => {
   let resultObj = obj;
-  for (let i = 0; i < fields.length; i++) {
+  for (let index of fields.keys()) {
     for (let key in obj) {
-      if (key === fields[i]) {
-        delete resultObj[fields[i]];
+      if (key === fields[index]) {
+        delete resultObj[fields[index]];
       }
     }
   }

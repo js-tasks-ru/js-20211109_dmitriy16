@@ -5,12 +5,10 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-  let collator;
+  let collator = new Intl.Collator(["ru", "en"], { caseFirst: "upper" });
   if (param === 'asc') {
-    collator = new Intl.Collator(["ru", "en"], { caseFirst: "upper" });
     return arr.slice().sort(collator.compare);
   } else {
-    let collator = new Intl.Collator(["ru", "en"]);
-    return arr.slice().sort(collator.compare).reverse();
+    return arr.slice().sort((a, b) => collator.compare(b, a));
   }
 }
