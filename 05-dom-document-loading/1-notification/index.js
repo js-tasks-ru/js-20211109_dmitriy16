@@ -1,6 +1,8 @@
 export default class NotificationMessage {
   element;
 
+  static isShowed;
+
   constructor(message = '', { duration = 0, type = ''} = {}) {
     this.message = message;
     this.duration = duration;
@@ -24,10 +26,15 @@ export default class NotificationMessage {
   }
 
   render() {
+    if (NotificationMessage.isShowed) {
+      NotificationMessage.isShowed.remove();
+    }
     const element = document.createElement('div');
 
     element.innerHTML = this.getTemplate();
     this.element = element.firstElementChild;
+
+    NotificationMessage.isShowed = this.element;
   }
 
   show(target = document.body) {
@@ -37,6 +44,7 @@ export default class NotificationMessage {
 
   remove() {
     this.element.remove();
+    NotificationMessage.isShowed = null;
   }
 
   destroy() {
