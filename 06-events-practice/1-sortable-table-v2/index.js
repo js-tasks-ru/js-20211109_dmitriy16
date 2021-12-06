@@ -14,7 +14,7 @@ export default class SortableTable {
   }
 
   initListeners() {
-    document.addEventListener('pointerdown', this.onMouseClick);
+    this.subElements.header.addEventListener('pointerdown', this.onMouseClick);
   }
 
   onMouseClick = event => {
@@ -115,7 +115,6 @@ export default class SortableTable {
   }
 
   destroy() {
-    document.removeEventListener('pointerdown', this.onMouseClick);
     this.element.remove();
     this.subElements = {};
   }
